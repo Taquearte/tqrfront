@@ -1,0 +1,126 @@
+
+
+
+                <!-- START PAGE CONTENT-->
+                <div class="page-heading">
+                    <h1 class="page-title">{{title}}</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a routerLink="/index"><i class="la la-home font-20"></i></a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="page-content fade-in-up">
+
+                        <div class="ibox">
+                                <div class="ibox-head">
+                                    <div class="ibox-title">Edición</div>
+                                    <div class="ibox-tools">
+                                        <a class="ibox-collapse"><i class="ti-angle-down"></i></a>
+                                    </div>
+                                </div>
+                                <div class="ibox-body" >
+                                    <form class="form-info" id="form-sample-1" [formGroup]="frmMapeo" novalidate="novalidate">
+                                        <div class="row">
+                                            <div class="col-sm-3 form-group mb-2">
+                                                <label>Proveedor RFC</label>
+                                                <input class="form-control form-control-air" placeholder="RFC" formControlName="provrfc" name="provrfc" type="text" [attr.disabled]="false">
+                                            </div>
+                                            <div class="col-sm-3 form-group mb-4">
+                                                <label>Proveedor Nombre</label>
+                                                <input class="form-control form-control-air" placeholder="Nombre" formControlName="provnombre" name="provnombre" type="text" [attr.disabled]="false">
+                                            </div>                                            
+                                            <div class="col-sm-3 form-group mb-2">
+                                                <label>Cve Prod / Serv</label>
+                                                <input class="form-control form-control-air" placeholder="Cve Prod Serv" formControlName="cveprodserv" name="provnombre" type="text" [attr.disabled]="false">
+                                            </div>
+                                            <div class="col-sm-3 form-group mb-4">
+                                                <label>Ultima Descripcion</label>
+                                                <input class="form-control form-control-air" placeholder="Ult. Descrip" formControlName="descripcion" name="descripcion" type="text" [attr.disabled]="false">
+                                            </div>    
+                                            <div class="col-sm-3 form-group mb-4">
+                                                <label>Concepto</label>
+                                                <input  Class="form-control form-control-air"  type="text"  name="concepto"  placeholder="Concepto"  formControlName="concepto" [attr.disabled]="false">
+                                            </div>                                                                                     
+                                            <div class="col-sm-3 form-group mb-4">
+                                                <label>Clase</label>
+                                                <input  Class="form-control form-control-air"  type="text"  name="concepto"  placeholder="Clase"  formControlName="clase" [attr.disabled]="false">
+                                            </div> 
+                                            <div class="col-sm-3 form-group mb-4">
+                                                <label>Subclase</label>
+                                                <input  Class="form-control form-control-air"  type="text"  name="concepto"  placeholder="SubClase"  formControlName="subclase" [attr.disabled]="false">
+                                            </div>   
+                                            <div class="col-sm-3 form-group mb-4">
+                                                    <label> </label>
+                                                <button class=" form-control btn btn-primary btn-fix btn-air" (click)="mk_guardar()">
+                                                    <span class="btn-icon"><i class="la la-save"></i>Guardar</span>
+                                                </button>
+                                            </div>   
+
+                                            
+                                                                                   
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+
+                    <div class="ibox">
+                        <div class="ibox-body">                           
+
+                            <div>
+                                <!-- <h5 class="font-strong mb-4">Gastos</h5> -->
+                                <div class="flexbox mb-4">
+                                    <div class="flexbox">
+                                        <label class="mb-0 mr-2">Clase:</label>
+                                        <select class="selectpicker show-tick form-control" id="type-filter" title="Please select" data-style="btn-solid" data-width="150px">
+                                            <option value="">All</option>                      
+                                            <!-- <option *ngFor="let e of conceptoclalst" [ngValue]="e.Clase">{{e.Clase}}</option>   -->
+                                            <option value="COSTO DIRECTO">COSTO DIRECTO</option>
+                                            <option value="COSTO NOMINAS">COSTO NOMINAS</option>
+                                            <option value="ENTRECUENTAS">ENTRECUENTAS</option>
+                                            <option value="GASTOS ADMINISTRACION">GASTOS ADMINISTRACION</option>
+                                            <option value="GASTOS DE OPERACION">GASTOS DE OPERACION</option>
+                                            <option value="GASTOS PRODUCCION">GASTOS PRODUCCION</option>
+                                            <option value="SIN CLASE">SIN CLASE</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group-icon input-group-icon-left mr-3">
+                                        <span class="input-icon input-icon-right font-16"><i class="ti-search"></i></span>
+                                        <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
+                                    </div>
+                                </div>
+                                <div class="table-responsive row">
+                                    <table class="table table-bordered table-hover" id="dt_concepto">
+                                        <thead class="thead-default thead-lg">
+                                            <tr>
+                                                <th class="no-sort"></th>  
+                                                <th>Concepto </th>                          
+                                                <th>Clase </th>
+                                                <th>SubClase </th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let u of conceptolst ; let i = index">
+                                                <td>
+                                                    <input type="radio" 
+                                                    name="checkConcepto" 
+                                                    [value]="u.value" 
+                                                    (change)="onCheckChange(u.Concepto,u.Clase,u.SubClase)">
+                                                    
+                                                </td>      
+                                                <td >{{u.Concepto}}</td>                        
+                                                <td>{{u.Clase}}</td>
+                                                <td>{{u.SubClase}}</td>
+                                                                          
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT-->
+  

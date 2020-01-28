@@ -1,0 +1,79 @@
+
+                <!-- START PAGE CONTENT-->
+                <div class="page-heading">
+                    <h1 class="page-title">{{title}}</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a routerLink="/index"><i class="la la-home font-20"></i></a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="page-content fade-in-up">
+                    <div class="ibox">
+                        <div class="ibox-body">
+                            <div >
+                                <div class="preloader-backdrop">
+                                    <div class="page-preloader">Loading</div>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- <h5 class="font-strong mb-4">Gastos</h5> -->
+                                <div class="flexbox mb-4">
+                                    <div class="flexbox">
+                                        <label class="mb-0 mr-2">Estatus:</label>
+                                        <select class="selectpicker show-tick form-control" id="type-filter" title="Please select" data-style="btn-solid" data-width="150px">
+                                            <option value="">All</option>
+                                            <option>Activo</option>
+                                            <option>Rechazado</option>
+                                            <option>Concluido</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group-icon input-group-icon-left mr-3">
+                                        <span class="input-icon input-icon-right font-16"><i class="ti-search"></i></span>
+                                        <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
+                                    </div>
+                                </div>
+                                <div class="table-responsive row">
+                                    <table class="table table-bordered table-hover" id="dt_upxml">
+                                        <thead class="thead-default thead-lg">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Detalles</th>	
+                                                <th>Descripcion</th>								
+                                                <th>Usuario</th>
+                                                <th>Empresa</th>
+                                                <th>Sucursal</th>
+                                                <th>Fecha Emision</th>
+                                                <th>Estatus</th>
+                                                <th>Nombre Original</th>
+                                                <th>Observaciones</th>                                          
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let u of upxmllst; let i = index">    
+                                                <td class="text-center">{{i+1}}</td>
+                                                <td class="text-left">
+                                                    <a routerLink="/upxmlcab/{{u.id}}"><h5 class="font-strong mb-4 mt-4"><p class="text-primary">Detalles</p></h5></a>
+                                                </td>
+                                                <td class="text-left">{{u.Descripcion}}</td>
+                                                <td class="text-left">{{u.Usuario}}</td>
+                                                <td class="text-left">{{u.Empresa}}</td>
+                                                <td class="text-left">{{u.Sucursal}}</td>
+                                                <td class="text-left">{{u.Fecha}}</td>
+                                                <td class="text-center">
+                                                    <span [ngClass]="mk_getBottonClass(u.Estatus)">{{u.Estatus}}</span>
+                                                   
+                                                </td>                                                 
+                                                <td class="text-center">{{u.OriginalNombre}}</td>
+                                                <td class="text-center" >{{u.Observaciones}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT-->
+  

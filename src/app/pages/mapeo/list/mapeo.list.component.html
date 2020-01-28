@@ -1,0 +1,75 @@
+
+
+                <!-- START PAGE CONTENT-->
+                <div class="page-heading">
+                    <h1 class="page-title">{{title}}</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a routerLink="/index"><i class="la la-home font-20"></i></a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="page-content fade-in-up">
+
+                    <div class="ibox">
+                        <div class="ibox-body">                           
+
+                            <div>
+                                <!-- <h5 class="font-strong mb-4">Gastos</h5> -->
+                                <div class="flexbox mb-4">
+                                    <div class="flexbox">
+                                        <label class="mb-0 mr-2">Estatus:</label>
+                                        <select class="selectpicker show-tick form-control" id="type-filter" title="Please select" data-style="btn-solid" data-width="150px">
+                                            <option value="">All</option>
+                                            <option>PENDIENTE</option>
+                                            <option>COMPLETO</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group-icon input-group-icon-left mr-3">
+                                        <span class="input-icon input-icon-right font-16"><i class="ti-search"></i></span>
+                                        <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
+                                    </div>
+                                </div>
+                                <div class="table-responsive row">
+                                    <table class="table table-bordered table-hover" id="dt_mapeo">
+                                        <thead class="thead-default thead-lg">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>...</th>
+                                                <th>RFC</th>	
+                                                <th>Proveedor</th>                                                		
+                                                <th>Estatus</th>						
+                                                <th>Clave Producto Serv</th>
+                                                <th>Concepto</th>
+                                                <th>Clase</th>
+                                                <th>SubClase</th>
+                                                <th>Ultima Descripcio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let u of mapeolst; let i = index">    
+                                                <td class="text-left">{{u.id}}</td>
+                                                <td> 
+                                                    <a class="text-muted font-16" routerLink="/mapeo/edit/{{u.id}}"><i class="ti-pencil"></i></a>
+                                                </td>
+                                                <td class="text-left">{{u.Proveedor}}</td>
+                                                <td class="text-left">{{u.Nombre}}</td>
+                                                <td class="text-center">
+                                                    <span [ngClass]="mk_getBottonClass(u.Estatus)">{{u.Estatus}}</span>
+                                      
+                                                </td> 
+                                                <td class="text-center">{{u.ClaveProdServ}} </td>                                            
+                                                <td class="text-left">{{u.Concepto}}</td>
+                                                <td class="text-left">{{u.Clase}}</td>
+                                                <td class="text-left">{{u.SubClase}}</td>
+                                                <td class="text-left">{{u.UltimaDes}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT-->
+  

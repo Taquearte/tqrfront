@@ -1,0 +1,59 @@
+ <div class="page-content fade-in-up"> 
+    <!-- START PAGE CONTENT-->
+    <div class="page-heading">
+        <h1 class="page-title">{{title}}</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/index" ></a><i class="la la-home font-20"></i>
+            </li>
+        </ol>
+    </div>
+    <div class="page-content fade-in-up">
+        <div class="ibox">
+            <div class="ibox-head">
+                <div class="ibox-title">{{title}}
+                        <div class=" text-center mb-4">
+                                <label></label>
+                                <button class="btn btn-primary  btn-block" (click)="mk_upload()" >Agregar</button>
+                            </div>
+                    <!-- <a class="btn btn-sm btn-primary ml-2" target="_blank">Official site</a> -->
+                </div>
+            </div>
+            <div class="ibox-body">
+            <form class="form-info" id="articuloforma" [formGroup]="uploadForm">
+                    <div class="row">
+                        <div class="col-sm-3 form-group mb-4">
+                            <label>Fecha</label>
+                            <input Class="form-control form-control-air" type="text" name="proyecto" placeholder="Fecha" formControlName="fecha" [attr.disabled]="false">
+                        </div>
+
+                        <div class="col-sm-3 form-group mb-4">
+                            <label>Clave (sin espacios)</label>
+                            <input class="form-control form-control-air" type="text" name="descripcion" placeholder="Descripcion" formControlName="descripcion" >
+                        </div>   
+                        
+                        <div class="col-sm-3 form-group mb-4">
+                            <label>Proyecto</label>
+                            <select class="form-control form-control-air select2_proyecto" allow-clear="true" id="Proyecto" name="Proyecto">
+                                    <option value="" disabled selected></option> 
+                                    <option *ngFor="let u of proylst" [ngValue]="u.proyecto">{{u.descripcion}}</option> 
+                            </select>                            
+                        </div>
+                        
+                    </div>
+                </form>                
+                <!-- in app.component.html -->
+                <!-- <div class="custom-dropzone" ngx-dropzone [accept]="'text/xml'"  (change)="onSelect($event)"> -->
+                    <!-- <ngx-dropzone (change)="onSelect($event)" [expandable]="true" [disabled]="true"> -->
+                    <ngx-dropzone (change)="onSelect($event)" [accept]="'text/xml'"  [expandable]="true" [disabled]="false"> 
+                        <ngx-dropzone-label>Drop it, file!</ngx-dropzone-label>
+                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                     </ngx-dropzone> 
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+ </div> 

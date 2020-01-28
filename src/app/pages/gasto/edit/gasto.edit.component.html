@@ -1,0 +1,251 @@
+<div class="page-heading">
+    <h1 class="page-title">{{title}}</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/index"><i class="la la-home font-20"></i></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/gasto/list/">Lista</a>
+        </li>                   
+    </ol>
+</div>
+<div class="page-content fade-in-up" >
+    <div class="ibox">
+        <div class="ibox-head">
+            <div class="ibox-title">Gasto Cabecera...
+
+                    <button class="btn btn-outline-primary btn-icon-only btn-circle btn-sm" (click)="mk_guardar()" ><i class="ti-save"></i></button>
+                    <button class="btn btn-outline-primary btn-icon-only btn-circle btn-sm" (click)="mk_afectar()" ><i class="ti-control-forward"></i></button>
+                    <button class="btn btn-outline-primary btn-icon-only btn-circle btn-sm" (click)="mk_eliminar()" ><i class="ti-trash"></i></button>
+
+            </div>
+            <div class="ibox-tools">
+                <a class="ibox-collapse"><i class="ti-angle-down"></i></a>
+            </div>
+        </div>
+            <div class="ibox-body">
+                <form class="form-info" id="formGasto" [formGroup]="formGasto">
+                    <div class="row">
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Mov</label>
+                            <select class="form-control form-control-air"  id="Mov" name="Mov" placeholder="Mov" formControlName="Mov" (change)="onChangetipoMov($event.target.value)">
+                                
+                                <option *ngFor="let u of movlst" [ngValue]="u.Mov">{{u.Mov}}</option>                                         
+                            </select>
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>MovID</label>
+                            <input class="form-control form-control-air" type="text"  name="MovID" placeholder="MovID" formControlName="MovID" [attr.disabled]='true'  > 
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Estatus</label>
+                            <input class="form-control form-control-air" type="text"  name="Estatus" placeholder="Estatus" formControlName="Estatus" [attr.disabled]='true'>  
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Proyecto</label>
+                            <select class="form-control form-control-air select2_proyecto" allow-clear="true" id="Proyecto" name="Proyecto">
+                                    <option value="" disabled selected></option> 
+                                    <option *ngFor="let u of proylst" [ngValue]="u.proyecto">{{u.descripcion}}</option> 
+                            </select>                            
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label >Acreedor</label>
+                            <select class="form-control form-control-air select2_acreedor" id="Acreedor" name="Acreedor">
+                                    <option value="" disabled selected></option>
+                                <option *ngFor="let u of acreedorlst" [ngValue]="u.Proveedor">{{u.Nombre}}</option>  
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Moneda</label>
+                            <select class="form-control" id="Moneda" name="Moneda" formControlName="Moneda" >  
+                                <option value="Pesos" selected>Pesos</option> 
+                            </select> 
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Fecha Emision</label>
+                            <input class="form-control form-control-air" type="date"  name="FechaEmision" placeholder="FechaEmision" formControlName="FechaEmision"   > 
+                        </div>
+                        <div class="col-sm-4 form-group mb-4">
+                            <label>Observaciones</label>
+                            <input class="form-control form-control-air" type="text"  name="Observaciones" placeholder="Observaciones" formControlName="Observaciones"   > 
+                        </div>                        
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Forma Pago</label>
+                            <select class="form-control" name="FormaPago" formControlName="FormaPago" >                                                  
+                                <option *ngFor="let u of formapagolst" [ngValue]="u.FormaPago">{{u.FormaPago}}</option> 
+                            </select> 
+                        </div>  
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Clase</label>
+                            <select class="form-control" name="Clase" formControlName="Clase" (change)="onChangeClase($event.target.value)" >                                                  
+                                <option *ngFor="let u of conceptoclalst" [ngValue]="u.Clase">{{u.Clase}}</option> 
+                            </select> 
+                        </div>  
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Subclase</label>
+                            <select class="form-control" name="Subclase" formControlName="Subclase"  (change)="onChangeSubClase($event.target.value)" >                                                  
+                                <option *ngFor="let u of conceptosubselect" [ngValue]="u.SubClase">{{u.SubClase}}</option> 
+                            </select> 
+                        </div>  
+                        <div class="col-sm-2 form-group mb-4"> 
+                            <label>Condicion</label>
+                            <select class="form-control" name="Condicion" formControlName="Condicion" >                                                  
+                                <option *ngFor="let u of condicionlst" [ngValue]="u.Condicion">{{u.Condicion}}</option>
+                            </select> 
+                        </div> 
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Vencimiento</label>
+                            <input class="form-control form-control-air" type="date"  name="Vencimiento" placeholder="Vencimiento" formControlName="Vencimiento"   > 
+                        </div>
+
+
+                 
+                    </div>
+                </form>
+                <!-- <p>form value: {{formGasto.value|json}}</p> -->
+            </div>                    
+    </div>
+    <div class="ibox" >
+            <div class="ibox-head">
+                <div class="ibox-title">Detalle
+                </div>
+                <div class="ibox-tools">
+                    <a class="ibox-collapse"><i class="ti-angle-down"></i></a>
+                </div>
+            </div>
+            <div class="ibox-body" >
+                    <form class="form-info" id="formaGastoDetalle" [formGroup]="formaGastoDetalle">
+                        <div class="row">
+
+                            <div class="col-sm-2 form-group mb-4" >
+                                <label >Establecimiento</label>
+                                <select class="form-control form-control-air select2_establecimiento" id="Establecimiento" name="Establecimiento" >
+                                    <option value="" disabled selected></option>
+                                    <option *ngFor="let u of establelst" [ngValue]="u.Proveedor">{{u.Nombre}}</option> 
+                                </select>
+                            </div>  
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Concepto</label>
+                                <select class="form-control form-control-air"  id="Concepto" name="Concepto" placeholder="Concepto" formControlName="Concepto" (change)="onChangeConcepto($event.target.value)">
+                                    <option *ngFor="let u of conceptoselect" [ngValue]="u.Concepto">{{u.Concepto}}</option>                                         
+                                </select>
+                            </div>
+                            <!-- <div class="col-sm-2 form-group mb-4" *ngIf="mostrarCaja"> 
+                                <label>Personal</label>
+                                <select class="form-control" name="Personal" formControlName="Personal" >                                                  
+                                    <option *ngFor="let u of condicionlst" [ngValue]="u.Condicion">{{u.Condicion}}</option>
+                                </select> 
+                            </div>                              -->
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Fecha</label>
+                                <input class="form-control form-control-air" type="date"  name="Fecha" placeholder="Fecha" formControlName="Fecha"   > 
+                            </div>    
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Referencia</label>
+                                <input class="form-control form-control-air" type="text"  name="Referencia" placeholder="Referencia" formControlName="Referencia" > 
+                            </div>                                                      
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Cantidad</label>
+                                <input class="form-control form-control-air" type="number"  name="Cantidad" placeholder="Cantidad" formControlName="Cantidad" (change)="onChangeCantidad($event.target.value)" > 
+                            </div>
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Precio</label>
+                                <input class="form-control form-control-air" type="number"  name="Precio" placeholder="Precio" formControlName="Precio" (change)="onChangePrecio($event.target.value)" > 
+                            </div>       
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Importe</label>
+                                <input class="form-control form-control-air" type="number"  name="Importe" placeholder="Importe" formControlName="Importe"  [attr.disabled]='true' > 
+                            </div>     
+                             <div class="col-sm-2 form-group mb-4">
+                                <label>Tipo IVA</label>
+                                <select class="form-control form-control-air"  id="TipoImpuesto1" name="TipoImpuesto1" placeholder="Tipo Imp" formControlName="TipoImpuesto1" (change)="onChangetipoiva($event.target.value)">
+                                    <option value="" selected>Excento</option> 
+                                    <option value="IVA 16%">IVA 16%</option>                                        
+                                </select>
+                            </div>    
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Impuestos</label>
+                                <input class="form-control form-control-air" type="number"  name="Impuestos" placeholder="Impuestos" formControlName="Impuestos"  [attr.disabled]='true' > 
+                            </div>  
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Retencion</label>
+                                <input class="form-control form-control-air" type="number"  name="Retencion" placeholder="Retencion" formControlName="Retencion"  (change)="onChangeret($event.target.value)" > 
+                            </div>    
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>ImpRetencion</label>
+                                <input class="form-control form-control-air" type="number"  name="ImpRetencion" placeholder="ImpRetencion" formControlName="ImpRetencion"  [attr.disabled]='true' > 
+                            </div>       
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Retencion.2</label>
+                                <input class="form-control form-control-air" type="number"  name="Retencion2" placeholder="Retencion2" formControlName="Retencion2"  (change)="onChangeret2($event.target.value)" > 
+                            </div>    
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>ImpRetencion2</label>
+                                <input class="form-control form-control-air" type="number"  name="ImpRetencion2" placeholder="ImpRetencion2" formControlName="ImpRetencion2"  [attr.disabled]='true' > 
+                            </div>                                                          
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>Total</label>
+                                <input class="form-control form-control-air" type="number"  name="Total" placeholder="Total" formControlName="Total"  [attr.disabled]='true' > 
+                            </div>   
+
+                                                       
+                             <!-- <div class="col-sm-2 form-group mb-4">
+                                <label>ContUso</label>
+                                <select class="form-control form-control-air"  id="ContUso" name="ContUso" placeholder="ContUso" formControlName="ContUso">
+                                    <option *ngFor="let u of movlst" [ngValue]="u.Mov">{{u.Mov}}</option>                                         
+                                </select>
+                            </div>     -->
+                            <div class="col-sm-2 form-group mb-4">
+                                <button class="btn btn-primary btn-rounded btn-air my-3" data-toggle="modal" (click)="mk_agregarDetalle()" >
+                                    <span class="btn-icon"><i class="la la-plus"></i>Agregar</span>
+                                </button>
+                            </div>             
+
+                        </div>
+                    </form>
+                </div>             
+  
+            <div class="ibox-body">
+                <div class="table-responsive row">
+                    <table class="table table-bordered table-hover" id="dt_gasto">
+                        <thead class="thead-default thead-lg">
+                            <tr>
+                                <th>#</th>
+                                <th>Concepto</th>
+                                <th>Fecha</th>
+                                <th>Referencia</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Importe</th>
+                                <th>Imp. IVA</th>
+                                <th>Imp. RET</th>
+                                <th>Imp. RET2</th>
+                                <th>Total</th>
+             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of gastomovdet; let i = index">
+                                <td><a class="text-muted font-16" (click)="mk_borrarDetalle(i)"><i class="ti-trash"></i></a></td>
+                                <td class="text-left"><h6 class="m-0">{{u.Concepto}}</h6></td>
+                                <td class="text-center"><h6 class="m-0">{{u.Fecha | date:formatofecha }}</h6></td>
+                                <td class="text-left"><h6 class="m-0">{{u.Referencia}}</h6></td>
+                                <td class="text-center"><h6 class="m-0">{{u.Cantidad}}</h6></td>
+                                <td class="text-right"><h6 class="m-0">{{u.Precio | currency}}</h6></td>
+                                <td class="text-right"><h6 class="m-0">{{u.Importe | currency}}</h6></td>
+                                <td class="text-right"><h6 class="m-0">{{u.Impuestos | currency}}</h6></td>   
+                                <td class="text-right"><h6 class="m-0">{{u.ImpRetencion | currency}}</h6></td>   
+                                <td class="text-right"><h6 class="m-0">{{u.ImpRetencion2 | currency}}</h6></td> 
+                                <td class="text-center"><h6 class="m-0">{{u.Total | currency}}</h6></td>                           
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>              
+        </div>
+</div> 
+<!-- END PAGE CONTENT-->
+
+

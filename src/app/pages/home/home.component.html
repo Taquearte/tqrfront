@@ -1,0 +1,86 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="ibox ibox-fullheight">
+                <div class="ibox-head"> 
+                    <div class="ibox-title">Ultimos movimientos</div>
+                    <div class="ibox-tools">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item"> <i class="ti-pencil"></i>Nuevos</a>
+                            <a class="dropdown-item"> <i class="ti-pencil-alt"></i>Editados</a>
+                            <a class="dropdown-item"> <i class="ti-close"></i>Borrados</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <div class="flexbox mb-4">
+                        <!-- <div class="flexbox">
+                            <span class="flexbox mr-3">
+                                <span class="mr-2 text-muted">Paid</span>
+                                <span class="h3 mb-0 text-primary font-strong">310</span>
+                            </span>
+                            <span class="flexbox">
+                                <span class="mr-2 text-muted">Unpaid</span>
+                                <span class="h3 mb-0 text-pink font-strong">105</span>
+                            </span>
+                        </div> -->
+                        <a class="flexbox" routerLink="/gasto/list/{{empresa}}" >VIEW ALL<i class="ti-arrow-circle-right ml-2 font-18"></i></a>
+                    </div>
+                    <div class="ibox-fullwidth-block">
+                        <table class="table table-hover">
+                            <thead class="thead-default thead-lg">
+                                <tr gastolst>
+                                    <th class="pl-4"> ID</th>
+                                    <th class="pl-4">Movimiento</th>
+                                    <th>Contacto</th>
+                                    <th>Importe</th>
+                                    <th>Estatus</th>
+                                    <th class="pr-4" style="width:91px;">Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let u of gastolst; let i = index">
+                                    <td class="pl-4"> 
+                                        <a routerLink="/gasto/edit/{{u.ID}}" >#{{u.ID}}</a>
+                                    </td>
+                                    <td>{{u.Mov}}</td>
+                                    <td>{{u.Nombre}}</td>
+                                    <td>{{u.Total | currency}}</td>
+                                    <td>
+                                        <span [ngClass]="mk_getBottonClass(u.Estatus)">{{u.Estatus}}</span>
+                                    </td>
+                                    <td class="pr-4">{{u.FechaEmision | date:fechaformato}}</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox ibox-fullheight">
+
+                <div class="ibox-head">
+                    <div class="ibox-title">Logs XML</div>
+                    <div class="ibox-tools">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item"> <i class="ti-pencil"></i>Upload</a>
+                            <a class="dropdown-item"> <i class="ti-pencil-alt"></i>Cancelados</a>
+                            <a class="dropdown-item"> <i class="ti-close"></i>Borrados</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="timeline scroller" data-height="400px" *ngFor="let u of upxmllst; let i = index" >
+                            <!-- {{u.Descripcion}} {{u.Usuario}} {{u.Empresa}} {{u.Sucursal}} {{u.Estatus}} -->
+                        <li class="timeline-item"><i class="ti-check timeline-icon"></i>{{u.Archivos}}<small class="float-right text-muted ml-2 nowrap">{{u.Fecha}}</small></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
