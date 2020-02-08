@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import { HTMLfuctions } from '../../../_functions/HTML.fuctions';
 import { Datefuctions } from '../../../_functions/date.function';
 import { Cfg } from '../../../_config/gral.config';
-import { MovService } from '../../../_services/gasto/mov.service';
+//import { DocumentoService } from '../../../_services/gasto/mov.service';
 import { AcreedorService } from '../../../_services/gasto/acreedor.service';
 import { ProyService } from '../../../_services/gasto/proy.service';
 import { FormaPagoService } from '../../../_services/gasto/formapago.service';
@@ -21,7 +21,7 @@ declare var $: any;
 @Component({
   selector: 'app-gasto-edit',
   templateUrl: './gasto.edit.component.html',
-  providers: [MovService,AcreedorService,ProyService,FormaPagoService,ConceptoService,GastoService,CondicionService,ScriptLoaderService]
+  providers: [AcreedorService,ProyService,FormaPagoService,ConceptoService,GastoService,CondicionService,ScriptLoaderService]
 })
 
 export class GastoEditComponent implements OnInit, AfterViewInit {
@@ -68,7 +68,7 @@ public total2:any;
 
 
   constructor(
-    private _movService:MovService,
+    //private _documentoService:DocumentoService,
     private _acreedorService:AcreedorService,
     private _formaPagoService:FormaPagoService,
     private _proyService:ProyService,
@@ -99,7 +99,7 @@ public total2:any;
       this.createFormaGasto()
       this.createFormaGastoDetalle(); 
 
-      this.getmov();      
+      //this.getmov();      
       this.getprov();
       this.getproy();
       this.getformapago();      
@@ -440,8 +440,8 @@ public total2:any;
         }
       });
     }
-    getmov(){
-      this._movService.mov_list().subscribe(
+/*     getmov(){
+      this._documentoService.documento_list().subscribe(
         response => {
           if (response) {
             this.movlst=response;
@@ -454,7 +454,7 @@ public total2:any;
           Swal.fire(this.devempresa, mkerrores.message, 'error');
         }
       });
-    }
+    } */
 
     // Accioness
     mk_guardar(){

@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers:[GastoService,UpXMLService]
+  providers: [GastoService, UpXMLService]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   public gastolst: any;
@@ -21,56 +21,56 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public fechaformato: string;
   constructor(
     private _script: ScriptLoaderService,
-    private _gastoService:GastoService,
-    private _upXMLService:UpXMLService,
+    private _gastoService: GastoService,
+    private _upXMLService: UpXMLService,
     private datePipe: DatePipe,
     ) {
-      this.identiy=JSON.parse(localStorage.getItem('identity'));
-      this.devempresa=Cfg.devempresa;
-      this.fechaformato=Cfg.formatoFecha;
+      this.identiy = JSON.parse(localStorage.getItem('identity'));
+      this.devempresa = Cfg.devempresa;
+      this.fechaformato = Cfg.formatoFecha;
     }
 
   ngOnInit() {
     this.getgasto();
   }
 
-  mk_getBottonClass(status){
+  mk_getBottonClass(status) {
     return HTMLfuctions.getEstatusClass(status);
   }
   getupxml(){
-    this.empresa=this.identiy.Empresa;
+    this.empresa = this.identiy.Empresa;
     this._upXMLService.upxml_list10().subscribe(
       response => {
         if (response) {
-          this.upxmllst=response;
+          this.upxmllst = response;
 
         }
       },
       error => {
-        var errorMessage = <any>error;
+        const errorMessage = <any>error;
         if (errorMessage != null) {
-          var mkerrores =JSON.parse(error._body);
+          const mkerrores = JSON.parse(error._body);
           Swal.fire(this.devempresa, mkerrores.message, 'error');
         }
       });
 
   }
   getgasto(){
-    this.empresa=this.identiy.Empresa;
+    this.empresa = this.identiy.Empresa;
     this._gastoService.gasto_list9(this.empresa).subscribe(
       response => {
         if (response) {
-          this.gastolst=response;
+          this.gastolst = response;
           //console.log(this.gastolst);
           this.gastolst.sort(function (a, b){
-            return (b.ID - a.ID)
+            return (b.ID - a.ID);
         })
         }
       },
       error => {
-        var errorMessage = <any>error;
+        const errorMessage = <any>error;
         if (errorMessage != null) {
-          var mkerrores =JSON.parse(error._body);
+          const mkerrores = JSON.parse(error._body);
           Swal.fire(this.devempresa, mkerrores.message, 'error');
         }
       });

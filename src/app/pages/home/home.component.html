@@ -63,7 +63,7 @@
             <div class="ibox ibox-fullheight">
 
                 <div class="ibox-head">
-                    <div class="ibox-title">Logs XML</div>
+                    <div class="ibox-title">Anuncios</div>
                     <div class="ibox-tools">
                         <a class="dropdown-toggle" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -74,11 +74,31 @@
                     </div>
                 </div>
                 <div class="ibox-body">
-                    <ul class="timeline scroller" data-height="400px" *ngFor="let u of upxmllst; let i = index" >
-                            <!-- {{u.Descripcion}} {{u.Usuario}} {{u.Empresa}} {{u.Sucursal}} {{u.Estatus}} -->
-                        <li class="timeline-item"><i class="ti-check timeline-icon"></i>{{u.Archivos}}<small class="float-right text-muted ml-2 nowrap">{{u.Fecha}}</small></li>
-
-                    </ul>
+                   
+                        <div class="card mb-4">
+                            <div class="rel">
+                                <img class="card-img-top" src="../../../assets/img/blog/culinary-1.jpeg" alt="image">
+                                <div class="card-img-overlay">
+                                    <span class="badge badge-pink">Taquarte</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title mb-2">
+                                    <a class="text-pink">Informa</a>
+                                </h4>
+                                <div class="text-muted mb-3">06 Febrero 2020</div>
+                                <p class="text-light">Con nuestros proveedores, elevamos el nivel y establecemos el estándar de la industria de la belleza de prestigio</p>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="text-pink">
+                                        <img class="img-circle mr-2" src="../../../assets/img/users/user.png" alt="image" width="30">Admin</div>
+                                    <div>
+                                        <span class="text-muted mr-4"><i class="fa fa-heart-o mr-2"></i>124</span>
+                                        <span class="text-muted"><i class="fa fa-comment-o mr-2"></i>56</span>
+                                    </div>
+                            </div>
+                        </div>
+                   
+               
                 </div>
             </div>
         </div>        

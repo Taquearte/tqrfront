@@ -20,6 +20,7 @@ import { UploadXMLComponent } from './pages/uploadXML/uploadXML.component';
 import { FileXMLCabeceroComponent } from './pages/fileXMLCabecero/fileXMLCabecero.component';
 import { FileXMLComponent } from './pages/fileXML/fileXML.component';
 import { GastoListComponent } from './pages/gasto/list/gasto.list.component';
+import { CompraListComponent } from './pages/compras/list/compra.list.component';
 import { GastoEditComponent } from './pages/gasto/edit/gasto.edit.component';
 import { MapeoListComponent } from './pages/mapeo/list/mapeo.list.component';
 import { MapeoEditComponent } from './pages/mapeo/edit/mapeo.edit.component';
@@ -45,6 +46,11 @@ const routes: Routes = [
                 path: 'gasto/list/:id',
                 component: GastoListComponent
             },
+            {
+                path: 'compra/list',
+                component: CompraListComponent
+            },
+
             {
                 path: 'mapeo/edit/:id',
                 component: MapeoEditComponent
@@ -117,6 +123,7 @@ const routes: Routes = [
     LogoutComponent,
     GastoEditComponent,
     GastoListComponent,
+    CompraListComponent,
     FileXMLComponent,
     UploadXMLComponent,
     FileXMLCabeceroComponent,

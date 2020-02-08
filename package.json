@@ -64,6 +64,7 @@
     "popper.js": "^1.12.9",
     "raphael": "^2.2.7",
     "rxjs": "^5.5.2",
+    "rxjs-compat": "^6.5.4",
     "select2": "^4.0.7",
     "summernote": "^0.8.8",
     "sweetalert2": "^8.12.1",

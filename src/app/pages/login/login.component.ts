@@ -137,7 +137,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.sucursallstlog = this.sucursallst.filter( suc => suc.Sucursal == this.formaLogin.value.sucursal);
 			this._userService.signup(this.formaLogin.value).subscribe(
 				response=>{					
-					console.log(response);
+					//console.log(response);
 					if (response.OK === 0) {
 						//Swal.fire(Cfg.devempresa,'el usuario puede entrar',"success");
 						this.identity=response;
