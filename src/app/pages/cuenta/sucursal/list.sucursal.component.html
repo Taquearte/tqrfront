@@ -1,0 +1,90 @@
+
+<!-- START PAGE CONTENT-->
+<div class="page-heading">
+    <h1 class="page-title">{{title}}</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/index"><i class="la la-home font-20"></i></a>
+        </li>
+    </ol>
+</div>
+<div class="page-content fade-in-up">
+
+    <div class="ibox">
+        <div class="ibox-body">                           
+            <div class="ibox-body">
+                <div >
+                    <div class="preloader-backdrop">
+                        <div class="page-preloader">Loading</div>
+                    </div>
+                </div>
+                <div>
+                    <!-- <h5 class="font-strong mb-4">Gastos</h5> -->
+                    <div class="flexbox mb-4">
+                        <div class="flexbox">
+                            <label class="mb-0 mr-2">Estatus:</label>
+                            <select class="selectpicker show-tick form-control" id="type-filter" title="Please select" data-style="btn-solid" data-width="150px">
+                                <option value="">All</option>
+                                <option>Shipped</option>
+                                <option>Completed</option>
+                                <option>Pending</option>
+                                <option>Canceled</option>
+                            </select>
+                        </div>
+                        <div class="input-group-icon input-group-icon-left mr-3">
+                            <span class="input-icon input-icon-right font-16"><i class="ti-search"></i></span>
+                            <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
+                        </div>
+                    </div>
+                    <div class="table-responsive row">
+                        <table class="table table-bordered table-hover" id="dt_upxml">
+                            <thead class="thead-default thead-lg">
+                                <tr>
+                                    <th>ID</th>
+                                    <th class="no-sort"></th> 
+                                    <th>Sucursal</th>									
+                                    <th>Folio</th>
+                                    <th>Met.Pago</th>
+                                    <th>Estatus</th>
+                                    <th>Fecha</th>
+                                    <th>EmisorRFC</th>
+                                    <th>EmisorNombre</th>
+                                    <th>ReceptorRFC</th>
+                                    <th>ReceptorNombre</th>                                                
+                                    <th>Total</th>      
+                                    <th>Observ</th>                                     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let u of upxmllst; let i = index"> 
+                                    <td class="text-left">{{i+1}}</td>
+                                    <td> 
+                                        <a class="text-muted font-16" (click)="mk_quitar(u.id)"><i class="ti-trash"></i></a>
+                                    </td>                                                                                                   
+                                    
+                                    <td class="text-center">{{u.Serie}}</td>
+                                    <td class="text-left">{{u.Folio}}</td>
+                                    <td class="text-left">{{u.MetodoDePago}}</td>
+                                    <td class="text-center">
+                                        <span [ngClass]="mk_getBottonClass(u.Estatus)">{{u.Estatus}}</span>
+                                    </td>
+                                    <td class="text-left">{{u.Fecha | date:fechaformato}}</td>                                             
+                                    <td class="text-center">{{u.EmisorRFC}}</td>
+                                    <td class="text-center" >{{u.EmisorNombre}}</td>                                             
+                                    <td class="text-center">{{u.ReceptorRFC}}</td>
+                                    <td class="text-center" >{{u.ReceptorNombre}}</td>     
+                                    <td class="text-center" >{{u.Total | currency }}</td>  
+                                    <td class="text-center" ><h5 class="font-strong mb-4 mt-4"><p class="text-primary">{{u.Observaciones }}</p></h5></td> 
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+  

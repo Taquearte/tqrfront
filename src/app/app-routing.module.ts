@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Select2Module } from 'ng2-select2';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layouts/layout.component';
@@ -26,6 +26,15 @@ import { MapeoListComponent } from './pages/mapeo/list/mapeo.list.component';
 import { MapeoEditComponent } from './pages/mapeo/edit/mapeo.edit.component';
 import { RefreshComponent } from './pages/refresh/refresh.component';
 
+import { CfgEmpresaComponent } from './pages/cfg/empresa/cfg.empresa.component';
+import { CfgSucursalComponent } from './pages/cfg/sucursal/cfg.sucursal.component';
+import { CfgArticuloComponent } from './pages/cfg/articulo/cfg.articulo.component';
+import { CfgUsuarioComponent } from './pages/cfg/usuario/cfg.usuario.component';
+
+import { ListaEmpresaComponent } from './pages/cuenta/empresa/list.empresa.component';
+import { ListaSucursalComponent } from './pages/cuenta/sucursal/list.sucursal.component';
+import { ListaArticuloComponent } from './pages/cuenta/articulo/list.articulo.component';
+import { ListaUsuarioComponent } from './pages/cuenta/usuario/list.usuario.component';
 
 
 const routes: Routes = [
@@ -80,6 +89,38 @@ const routes: Routes = [
                 path: 'logout',
                 component: LogoutComponent
             },
+            {
+                path: 'cfgempresa',
+                component: CfgEmpresaComponent
+            },
+            {
+                path: 'cfgsucursal',
+                component: CfgSucursalComponent
+            },
+            {
+                path: 'cfgarticulo',
+                component: CfgArticuloComponent
+            },
+            {
+                path: 'cfgusuario',
+                component: CfgUsuarioComponent
+            },
+            {
+                path: 'listempresa',
+                component: ListaEmpresaComponent
+            },
+            {
+                path: 'listsucursal',
+                component: ListaSucursalComponent
+            },
+            {
+                path: 'listarticulo',
+                component: ListaArticuloComponent
+            },
+            {
+                path: 'listusuario',
+                component: ListaUsuarioComponent
+            }              
 
         ]
     },
@@ -129,8 +170,17 @@ const routes: Routes = [
     FileXMLCabeceroComponent,
     MapeoListComponent,
     MapeoEditComponent,
-    RefreshComponent
+    RefreshComponent,
 
+    CfgSucursalComponent,
+    CfgEmpresaComponent,
+    CfgUsuarioComponent,
+    CfgArticuloComponent,
+
+    ListaSucursalComponent,
+    ListaEmpresaComponent,
+    ListaUsuarioComponent,
+    ListaArticuloComponent,
   ],
   imports: [ 
       RouterModule.forRoot(routes), 
