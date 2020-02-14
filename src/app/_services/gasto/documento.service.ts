@@ -19,7 +19,7 @@ export class DocumentoService {
     constructor( private _http: Http) {
         this.url = Cfg.BackendUrl;
         this.token = localStorage.getItem('token');
-        this.identity = localStorage.getItem('identity');
+        this.identity = JSON.parse(localStorage.getItem('identity'));
     }
 
     documento_test () {
@@ -29,11 +29,14 @@ export class DocumentoService {
     documento_list() {
 
         const params: URLSearchParams = new URLSearchParams();
-        params.set('usuario', 'Kcobain');
-        params.set('empresa', 'DEMO');
-        params.set('sucursal', '0');
+        params.set('usuario', this.identity.Usuario);
+        params.set('empresa', this.identity.Empresa);
+        params.set('sucursal', this.identity.Sucursal);
         params.set('modulo', 'COMS');
-        params.set('perfil', 'ADMIN');
+        params.set('perfil', this.identity.PerfilWeb);
+        // console.log(params);
+        // console.log(this.identity.Usuario);
+        // console.log(this.identity);
 
         let headers = new Headers({'Content-Type':'application/json','authorization': this.token});
 
@@ -42,7 +45,7 @@ export class DocumentoService {
         requestOptions.search = params;
 
 
-        return this._http.get(this.url+'/documento/list', requestOptions).map(
+        return this._http.get(this.url+'/documento/list', {headers: headers, search: params }).map(
             res => res.json()
             );
     }

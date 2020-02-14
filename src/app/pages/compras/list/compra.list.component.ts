@@ -48,7 +48,7 @@ export class CompraListComponent implements OnInit, AfterViewInit {
       response => {
         if (response) {
           this.documentolst=response;
-
+          console.log(this.documentolst);
           this.documentolst.sort(function (a, b){
             return (b.ID - a.ID)
         })

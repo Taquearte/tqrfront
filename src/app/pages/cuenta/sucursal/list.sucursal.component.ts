@@ -33,6 +33,7 @@ export class ListaSucursalComponent implements OnInit, AfterViewInit {
   public claseFilter: any = { Clase: '' };
   public frmMapeo : FormGroup;
   public hoy = new Date();
+  public upxmllst: any;
  
   constructor(
     private _script: ScriptLoaderService,

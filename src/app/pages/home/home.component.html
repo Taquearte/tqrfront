@@ -26,7 +26,7 @@
                                 <span class="h3 mb-0 text-pink font-strong">105</span>
                             </span>
                         </div> -->
-                        <a class="flexbox" routerLink="/gasto/list/{{empresa}}" >VIEW ALL<i class="ti-arrow-circle-right ml-2 font-18"></i></a>
+                        <a class="flexbox" routerLink="/compra/list" >VIEW ALL<i class="ti-arrow-circle-right ml-2 font-18"></i></a>
                     </div>
                     <div class="ibox-fullwidth-block">
                         <table class="table table-hover">
@@ -41,7 +41,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let u of gastolst; let i = index">
+                                <tr *ngFor="let u of documentolst; let i = index">
                                     <td class="pl-4"> 
                                         <a routerLink="/gasto/edit/{{u.ID}}" >#{{u.ID}}</a>
                                     </td>

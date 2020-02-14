@@ -52,7 +52,9 @@
                                 <th>#</th>
                                 <th>Mov</th>
                                 <th>Estatus</th>
-                                <th>Proyecto</th>
+                                <th>Empresa</th>
+                                <th>Sucursal</th>
+                                <th>Referencia</th>
                                 <th>F.Emision</th>
                                 <th>Usuario</th>
                                 <th>Acreedor</th>
@@ -71,7 +73,9 @@
                                 <td class="text-center">
                                     <span [ngClass]="mk_getBottonClass(u.Estatus)">{{u.Estatus}}</span>
                                 </td>
-                                <td class="text-left">{{u.Proyecto}}</td>
+                                <td class="text-left">{{u.Empresa}}</td>
+                                <td class="text-left">{{u.Sucursal}}</td>
+                                <td class="text-left">{{u.Referencia}}</td>
                                 <td class="text-left">{{u.FechaEmision | date:fechaformato}}</td>
                                 <td class="text-center">{{u.Usuario}}</td>
                                 <td class="text-center">{{u.Nombre}}</td>

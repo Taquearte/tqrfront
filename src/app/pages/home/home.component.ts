@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ScriptLoaderService } from '../../_services/script-loader.service';
-import { GastoService } from '../../_services/gasto/gasto.service';
-import { UpXMLService } from '../../_services/gasto/upxml.service';
+import { DocumentoService } from '../../_services/gasto/documento.service';
+
 import Swal from 'sweetalert2';
 import { HTMLfuctions } from '../../_functions/HTML.fuctions';
 import { Cfg } from '../../_config/gral.config';
@@ -10,19 +10,19 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [GastoService, UpXMLService]
+  providers: [DocumentoService]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   public gastolst: any;
   public upxmllst: any;
   public identiy: any;
+  public documentolst: any;
   public empresa: string;
   public devempresa: string;
   public fechaformato: string;
   constructor(
     private _script: ScriptLoaderService,
-    private _gastoService: GastoService,
-    private _upXMLService: UpXMLService,
+    private _documentoService: DocumentoService,
     private datePipe: DatePipe,
     ) {
       this.identiy = JSON.parse(localStorage.getItem('identity'));
@@ -31,46 +31,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
   ngOnInit() {
-    this.getgasto();
+    this.getlista();
   }
 
   mk_getBottonClass(status) {
     return HTMLfuctions.getEstatusClass(status);
   }
-  getupxml(){
-    this.empresa = this.identiy.Empresa;
-    this._upXMLService.upxml_list10().subscribe(
+
+  getlista(){
+    this._documentoService.documento_list().subscribe(
       response => {
         if (response) {
-          this.upxmllst = response;
-
+          this.documentolst=response;
+          console.log(this.documentolst);
+          this.documentolst.sort(function (a, b){
+            return (b.ID - a.ID)
+        })        
         }
       },
       error => {
-        const errorMessage = <any>error;
+        var errorMessage = <any>error;
         if (errorMessage != null) {
-          const mkerrores = JSON.parse(error._body);
-          Swal.fire(this.devempresa, mkerrores.message, 'error');
-        }
-      });
-
-  }
-  getgasto(){
-    this.empresa = this.identiy.Empresa;
-    this._gastoService.gasto_list9(this.empresa).subscribe(
-      response => {
-        if (response) {
-          this.gastolst = response;
-          //console.log(this.gastolst);
-          this.gastolst.sort(function (a, b){
-            return (b.ID - a.ID);
-        })
-        }
-      },
-      error => {
-        const errorMessage = <any>error;
-        if (errorMessage != null) {
-          const mkerrores = JSON.parse(error._body);
+          var mkerrores =JSON.parse(error._body);
           Swal.fire(this.devempresa, mkerrores.message, 'error');
         }
       });
