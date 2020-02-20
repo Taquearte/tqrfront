@@ -14,14 +14,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
+
 import { HomeComponent } from './pages/home/home.component';
 
 import { UploadXMLComponent } from './pages/uploadXML/uploadXML.component';
 import { FileXMLCabeceroComponent } from './pages/fileXMLCabecero/fileXMLCabecero.component';
 import { FileXMLComponent } from './pages/fileXML/fileXML.component';
 import { GastoListComponent } from './pages/gasto/list/gasto.list.component';
-import { CompraListComponent } from './pages/compras/list/compra.list.component';
 import { GastoEditComponent } from './pages/gasto/edit/gasto.edit.component';
+
+import { CompraListComponent } from './pages/compras/list/compra.list.component';
+import { CompraEditComponent } from './pages/compras/edit/compra.edit.component';
+
 import { MapeoListComponent } from './pages/mapeo/list/mapeo.list.component';
 import { MapeoEditComponent } from './pages/mapeo/edit/mapeo.edit.component';
 import { RefreshComponent } from './pages/refresh/refresh.component';
@@ -59,7 +63,11 @@ const routes: Routes = [
                 path: 'compra/list',
                 component: CompraListComponent
             },
-
+            {
+                path: 'compra/edit/:id',
+                component: CompraEditComponent
+            }, 
+            
             {
                 path: 'mapeo/edit/:id',
                 component: MapeoEditComponent
@@ -165,6 +173,7 @@ const routes: Routes = [
     GastoEditComponent,
     GastoListComponent,
     CompraListComponent,
+    CompraEditComponent,
     FileXMLComponent,
     UploadXMLComponent,
     FileXMLCabeceroComponent,
@@ -191,6 +200,7 @@ const routes: Routes = [
       Select2Module,
       NgxDropzoneModule,
       FilterPipeModule
+ 
     ],
   exports: [
     RouterModule, ReactiveFormsModule, CommonModule

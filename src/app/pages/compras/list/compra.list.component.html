@@ -68,7 +68,7 @@
                             <tr *ngFor="let u of documentolst; let i = index">
                                 <td class="text-center">{{i+1}}</td>
                                 <td class="text-left">
-                                    <a routerLink="/gasto/edit/{{u.ID}}" >{{u.Mov}} {{u.MovID}}</a>                                    
+                                    <a routerLink="/compra/edit/{{u.ID}}" >{{u.Mov}} {{u.MovID}}</a>                                    
                                 </td>
                                 <td class="text-center">
                                     <span [ngClass]="mk_getBottonClass(u.Estatus)">{{u.Estatus}}</span>

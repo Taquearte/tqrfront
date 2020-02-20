@@ -1,0 +1,216 @@
+<!-- SESSION EDITAR ACTIVIDAD -->
+<div class="modal fade" id="modal_file">
+    <div class="modal-dialog" style="width:400px;" role="document">
+        <div class="modal-content timeout-modal">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center h4 mb-3">Adjuntar Archivos</div>
+                <br>
+                 <div id="timeout-activate-box">
+                    <form class="form-horizontal" id="frmUpload" [formGroup]="frmUpload"(ngSubmit)="onSubmit()">
+                        <div class="ibox-body">
+
+                            <div class="form-group mb-4 row">
+                                <label class="col-sm-2 col-form-label">Fecha</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control form-control-air" type="date" name="fecha" formControlName="fecha" placeholder="fecha" [attr.disabled]="mkEditar?'':null">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4 row">
+                                <label class="col-sm-2 col-form-label">Archivo PDF,XML</label>
+                                <div class="col-sm-10">
+                                    <input #myInput Class="form-control form-control-air" type="file" name="file"  id="file"
+                                    placeholder="Archivo" 
+                                    (change)="onFileSelect($event)"                                    
+                                    [attr.disabled]="mkEditar?'':null">
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <button class="btn btn-outline-info btn-fix btn-thick" type="submit">
+                                    <span class="btn-icon"><i class="ti-save"></i>Guardar</span>
+                                </button>
+                            </div>
+                            <ul class="timeline" *ngFor="let u of adjuntolst; let i = index" >
+                                <!-- <td><a class="text-muted font-16" (click)="mk_verarchivo(u.Nombre)"><i class="ti-eye"></i></a></td> -->
+                                <li class="timeline-item"><a class="text-muted font-16" (click)="mk_verarchivo(u.Nombre)"><i class="fa fa-file-excel-o timeline-icon"></i></a>{{u.Nombre}}<small class="float-right text-muted ml-2 nowrap">{{u.FechaEmision | date:fechaformato}}</small></li>
+                            </ul>
+                        </div>
+                    </form>
+
+                    <!-- <pre>{{formaEdit.value | json}}</pre> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="page-heading">
+    <h1 class="page-title">{{title}}</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/index"><i class="la la-home font-20"></i></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/compra/list/">Lista</a>
+        </li>                   
+    </ol>
+</div>
+<div class="page-content fade-in-up" >
+    <div class="ibox">
+        <div class="ibox-head">
+            <div class="ibox-title">Compra Cabecera...
+
+                    <button class="btn btn-outline-primary btn-icon-only btn-circle btn-sm" (click)="mk_guardar()" ><i class="ti-save"></i></button>
+                    <button class="btn btn-outline-primary btn-icon-only btn-circle btn-sm" (click)="mk_afectar()" ><i class="ti-control-forward"></i></button>
+                    <button class="btn btn-outline-primary btn-icon-only btn-circle btn-sm" (click)="mk_eliminar()" ><i class="ti-trash"></i></button>
+                    <button class="btn btn-outline-primary btn-icon-only btn-circle btn-sm" data-toggle="modal" data-target="#modal_file" (click)="mk_adjuntar()" ><i class="ti-clip"></i></button>
+                    <!-- <button class="btn btn-outline-info btn-icon-only btn-circle btn-sm btn-thick" ><i class="la la-plus" data-toggle="modal" data-target="#modal_agregar" (click)="mk_agregar()" ></i></button> -->
+
+            </div>
+            <div class="ibox-tools">
+                <a class="ibox-collapse"><i class="ti-angle-down"></i></a>
+            </div>
+        </div>
+            <div class="ibox-body">
+                <form class="form-info" id="frmCabecero" [formGroup]="frmCabecero">
+                    <div class="row">
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>mov</label>
+                            <input class="form-control form-control-air" type="text"  name="mov" placeholder="mov" formControlName="mov" [attr.disabled]='true'  > 
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>movID</label>
+                            <input class="form-control form-control-air" type="text"  name="movID" placeholder="movID" formControlName="movID" [attr.disabled]='true'  > 
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Estatus</label>
+                            <input class="form-control form-control-air" type="text"  name="Estatus" placeholder="Estatus" formControlName="estatus" [attr.disabled]='true'>  
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Proyecto</label>
+                            <select class="form-control form-control-air select2_proyecto" allow-clear="true" id="Proyecto" name="proyecto">
+                                    <option value="" disabled selected></option> 
+                                    <option *ngFor="let u of proylst" [ngValue]="u.proyecto">{{u.descripcion}}</option> 
+                            </select>                            
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Proveedor</label>
+                            <input class="form-control form-control-air" type="text"  name="Proveedor" placeholder="Proveedor" formControlName="proveedor" [attr.disabled]='true'>  
+                        </div>
+
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Moneda</label>
+                            <select class="form-control" id="Moneda" name="Moneda" formControlName="moneda" >  
+                                <option value="Pesos" selected>Pesos</option> 
+                            </select> 
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Fecha Emision</label>
+                            <input class="form-control form-control-air" type="date"  name="FechaEmision" placeholder="FechaEmision" formControlName="fechaEmision"   > 
+                        </div>
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Referencia</label>
+                            <input class="form-control form-control-air" type="text"  name="referencia" placeholder="referencia" formControlName="referencia"   > 
+                        </div> 
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Importe</label>
+                            <input class="form-control form-control-air" type="text"  name="Importe" placeholder="Importe" formControlName="importe"   > 
+                        </div>                        
+                        <div class="col-sm-2 form-group mb-4">
+                            <label>Impuesto</label>
+                            <input class="form-control form-control-air" type="text"  name="impuesto" placeholder="impuesto" formControlName="impuestos"   > 
+                        </div>  
+                         
+                    </div>
+                </form>
+                <!-- <p>form value: {{formGasto.value|json}}</p> -->
+            </div>                    
+    </div>
+
+    <div class="ibox" >
+            <div class="ibox-head">
+                <div class="ibox-title">Detalle
+                </div>
+                <div class="ibox-tools">
+                    <a class="ibox-collapse"><i class="ti-angle-down"></i></a>
+                </div>
+            </div>
+            <div class="ibox-body" *ngIf="detalleaddshow" >
+                    <form class="form-info" id="frmDetalle" [formGroup]="frmDetalle">
+                        <div class="row">
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>articulo</label>
+                                <input class="form-control form-control-air" type="text"  name="articulo" placeholder="articulo" formControlName="articulo" > 
+                            </div> 
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>descripcion</label>
+                                <input class="form-control form-control-air" type="text"  name="descripcion" placeholder="descripcion" formControlName="descripcion" > 
+                            </div>                             
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>cantidad</label>
+                                <input class="form-control form-control-air" type="text"  name="cantidad" placeholder="cantidad" formControlName="cantidad" > 
+                            </div> 
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>costoUnitario</label>
+                                <input class="form-control form-control-air" type="text"  name="costoUnitario" placeholder="costoUnitario" formControlName="costoUnitario" > 
+                            </div> 
+                            <div class="col-sm-2 form-group mb-4">
+                                <label>importe</label>
+                                <input class="form-control form-control-air" type="text"  name="importe" placeholder="importe" formControlName="importe" > 
+                            </div> 
+                            <div class="col-sm-2 form-group mb-4">
+                                <button class="btn btn-primary btn-rounded btn-air my-3" data-toggle="modal" (click)="mk_agregarDetalle()" >
+                                    <span class="btn-icon"><i class="la la-plus"></i>Agregar</span>
+                                </button>
+                            </div>             
+
+                        </div>
+                    </form>
+                </div>             
+  
+            <div class="ibox-body">
+                <div class="table-responsive row">
+                    <table class="table table-bordered table-hover" id="dt_gasto">
+                        <thead class="thead-default thead-lg">
+                            <tr>
+                                <th>#</th>
+                                <th class="text-left">Artículo</th>
+                                <th class="text-left">Descripción</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Importe</th>
+                                <th class="text-center">Impuestos</th>
+                                <th class="text-center">Total</th>
+             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of movdet; let i = index">
+                                <td><a class="text-muted font-16" (click)="mk_borrarDetalle(i)"><i class="ti-trash"></i></a></td>
+                                <td class="text-left"><h6 class="m-0">{{u.Articulo}}</h6></td>
+                                <td class="text-left"><h6 class="m-0">{{u.Descripcion1}}</h6></td>
+                                <td class="text-center"><h6 class="m-0">{{u.Cantidad}}</h6></td>
+                                <td class="text-right"><h6 class="m-0">{{u.Costo | currency}}</h6></td>
+                                <td class="text-right"><h6 class="m-0">{{u.Subtotal | currency}}</h6></td>
+                                <td class="text-right"><h6 class="m-0">{{u.Iva | currency}}</h6></td>   
+                                <td class="text-right"><h6 class="m-0">{{u.Total | currency}}</h6></td>                           
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>              
+        </div>
+</div> 
+<!-- END PAGE CONTENT-->
+
+

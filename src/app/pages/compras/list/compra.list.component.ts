@@ -91,7 +91,7 @@ export class CompraListComponent implements OnInit, AfterViewInit {
   }
 // ACCIONES
   mk_nuevo(){
-    this._router.navigate(['gasto/edit/0']);
+    this._router.navigate(['compra/edit/0']);
   }
 
   ngAfterViewInit() {

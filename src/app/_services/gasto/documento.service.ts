@@ -34,18 +34,33 @@ export class DocumentoService {
         params.set('sucursal', this.identity.Sucursal);
         params.set('modulo', 'COMS');
         params.set('perfil', this.identity.PerfilWeb);
-        // console.log(params);
-        // console.log(this.identity.Usuario);
-        // console.log(this.identity);
-
         let headers = new Headers({'Content-Type':'application/json','authorization': this.token});
-
         let requestOptions = new RequestOptions();
         requestOptions.headers = headers;
         requestOptions.search = params;
 
 
         return this._http.get(this.url+'/documento/list', {headers: headers, search: params }).map(
+            res => res.json()
+            );
+    }
+
+    documento_uno(_id) {
+
+        let mkid=_id; 
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('usuario', this.identity.Usuario);
+        params.set('empresa', this.identity.Empresa);
+        params.set('sucursal', this.identity.Sucursal);
+        params.set('modulo', 'COMS');
+        params.set('perfil', this.identity.PerfilWeb);
+        let headers = new Headers({'Content-Type':'application/json','authorization': this.token});
+        let requestOptions = new RequestOptions();
+        requestOptions.headers = headers;
+        requestOptions.search = params;
+
+
+        return this._http.get(this.url+'/documento/one/'+mkid, {headers: headers, search: params }).map(
             res => res.json()
             );
     }

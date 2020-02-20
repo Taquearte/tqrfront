@@ -43,11 +43,11 @@
                             <tbody>
                                 <tr *ngFor="let u of documentolst; let i = index">
                                     <td class="pl-4"> 
-                                        <a routerLink="/gasto/edit/{{u.ID}}" >#{{u.ID}}</a>
+                                        <a routerLink="/compra/edit/{{u.ID}}" >#{{u.ID}}</a>
                                     </td>
                                     <td>{{u.Mov}}</td>
                                     <td>{{u.Nombre}}</td>
-                                    <td>{{u.Total | currency}}</td>
+                                    <td>{{u.Importe + u.Impuestos | currency}}</td>
                                     <td>
                                         <span [ngClass]="mk_getBottonClass(u.Estatus)">{{u.Estatus}}</span>
                                     </td>

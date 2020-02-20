@@ -12,6 +12,7 @@ import { Select2Module } from 'ng2-select2';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent

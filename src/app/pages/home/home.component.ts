@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public upxmllst: any;
   public identiy: any;
   public documentolst: any;
+  public documentolstResp: any;
   public empresa: string;
   public devempresa: string;
   public fechaformato: string;
@@ -42,8 +43,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this._documentoService.documento_list().subscribe(
       response => {
         if (response) {
-          this.documentolst=response;
-          console.log(this.documentolst);
+          this.documentolstResp=response;
+          this.documentolst=this.documentolstResp.slice(0,9)
+          //console.log(this.documentolst);
           this.documentolst.sort(function (a, b){
             return (b.ID - a.ID)
         })        
