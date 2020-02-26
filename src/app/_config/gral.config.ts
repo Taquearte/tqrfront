@@ -5,5 +5,5 @@ export var Cfg = {
     BackendUrladj: 'http://localhost:3000',
     //formatoFecha: 'MM/dd/yyyy'
     formatoFecha: 'dd/MM/yyyy',
-    devempresa:'MK Software Dev'
+    devempresa:'MK Software'
 }

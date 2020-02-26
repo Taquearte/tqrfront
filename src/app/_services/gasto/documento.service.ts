@@ -64,4 +64,34 @@ export class DocumentoService {
             res => res.json()
             );
     }
+
+    documento_afectar(_id) {
+
+        let mkid=_id; 
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('usuario', this.identity.Usuario);
+        params.set('empresa', this.identity.Empresa);
+        params.set('sucursal', this.identity.Sucursal);
+        params.set('modulo', 'COMS');
+        params.set('perfil', this.identity.PerfilWeb);
+        let headers = new Headers({'Content-Type':'application/json','authorization': this.token});
+        let requestOptions = new RequestOptions();
+        requestOptions.headers = headers;
+        requestOptions.search = params;
+
+
+        return this._http.get(this.url+'/documento/afectar/'+mkid, {headers: headers, search: params }).map(
+            res => res.json()
+            );
+    }
+/*     documento_afectar(documentodet){
+        let params = JSON.stringify(documentodet); 
+        let headers = new Headers({'Content-Type': 'application/json','authorization': this.token});
+
+
+        return this._http.post(this.url+'/documento/afectar',params,{headers:headers}).map(
+            res=>res.json()
+            );
+        } */
+
 }

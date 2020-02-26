@@ -51,6 +51,7 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
   public hoy = new Date();
   public formatofecha: string;
   public mostrarCaja: boolean;
+  public loading: boolean; 
 
   public identity: any;
 
@@ -118,7 +119,7 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
       this.ctrFormDetalle(); 
       this.ctrFormAdjunto();
       this.getadjunto();
-        
+      this.loading=false;
       
       
       if (this.mkid==0){
@@ -218,7 +219,7 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
         importe : [{value: ''}, Validators.required], 
         impuestos : [{value: ''}, Validators.required], 
         sucursal : [{value: ''}, Validators.required], 
-        sucursalOrigen : [{value: ''}, Validators.required], 
+        sucursalOrigen : [{value: ''}, Validators.required],         
         detalle :[],
       });  
       this.frmCabecero.reset();    
@@ -316,7 +317,8 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
         });
         this.mkfile.nativeElement.value = '';
         this.closeFileUploadModal();
-        this.ngOnInit();
+        this.getadjunto();
+        //this.ngOnInit();
     }
   
     closeFileUploadModal() {
@@ -329,8 +331,35 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
     mk_guardar(){
       console.log('guardar');
     }
+
     mk_afectar(){
-      Swal.fire(this.devempresa, 'Funcion de Afectar', 'success');
+
+
+      if (this.frmCabecero.value.estatus !='PENDIENTE' ){
+        Swal.fire(this.devempresa, 'El movimiento no se puede afectar con estatus: '+this.frmCabecero.value.estatus, 'error');
+      } else {
+
+        this.loading=true;
+        this._documentoService.documento_afectar(this.mkid).subscribe(          
+          response => {
+            console.log(this.mkid);
+            if (response) {
+              console.log(response);
+              this.loading=false;
+              if ( response.Ok == 0 ) {
+                Swal.fire(this.devempresa, response.OkRef,"success");
+              } else {
+                Swal.fire(this.devempresa, response[0].OkRef,"error");                
+              }              
+              this._router.navigate(['compra/list']);
+          }
+        },
+        error => {   
+          this.loading=false;
+          console.log(error);         
+            Swal.fire(this.devempresa, error._body, 'error');          
+        });
+      }
     }
  
     mk_eliminar(){

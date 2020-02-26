@@ -35,10 +35,10 @@ import { CfgSucursalComponent } from './pages/cfg/sucursal/cfg.sucursal.componen
 import { CfgArticuloComponent } from './pages/cfg/articulo/cfg.articulo.component';
 import { CfgUsuarioComponent } from './pages/cfg/usuario/cfg.usuario.component';
 
-import { ListaEmpresaComponent } from './pages/cuenta/empresa/list.empresa.component';
-import { ListaSucursalComponent } from './pages/cuenta/sucursal/list.sucursal.component';
-import { ListaArticuloComponent } from './pages/cuenta/articulo/list.articulo.component';
-import { ListaUsuarioComponent } from './pages/cuenta/usuario/list.usuario.component';
+import { ListaEmpresaComponent } from './pages/empresa/list/list.empresa.component';
+import { ListaSucursalComponent } from './pages/sucursal/list/list.sucursal.component';
+import { ListaArticuloComponent } from './pages/articulo/list/list.articulo.component';
+import { ListaUsuarioComponent } from './pages/usuario/list/list.usuario.component';
 
 
 const routes: Routes = [
@@ -114,19 +114,19 @@ const routes: Routes = [
                 component: CfgUsuarioComponent
             },
             {
-                path: 'listempresa',
+                path: 'empresa/list',
                 component: ListaEmpresaComponent
             },
             {
-                path: 'listsucursal',
+                path: 'sucursal/list',
                 component: ListaSucursalComponent
             },
             {
-                path: 'listarticulo',
+                path: 'articulo/list',
                 component: ListaArticuloComponent
             },
             {
-                path: 'listusuario',
+                path: 'usuario/list',
                 component: ListaUsuarioComponent
             }              
 
