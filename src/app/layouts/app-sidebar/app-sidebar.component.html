@@ -6,7 +6,7 @@
             </a>
         </li>
 
-        <li>
+        <li *ngIf="verCfg" >
             <a href="javascript:;"><i class="sidebar-item-icon ti-settings"></i>
                 <span class="nav-label">Configuración</span>
             </a>
@@ -31,7 +31,7 @@
                 </ul>
             </div>
         </li>
-        <li>
+        <li *ngIf="verMaestros" >
             <a href="javascript:;"><i class="sidebar-item-icon ti-layout-tab-window"></i>
                 <span class="nav-label">Cuentas</span>
             </a>

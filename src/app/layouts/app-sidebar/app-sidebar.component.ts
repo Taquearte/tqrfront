@@ -6,11 +6,26 @@ declare var $: any;
 })
 export class AppSidebar {
   public identity: any;
-  public rutasucursal: any;
+  public perfil: any;
+  public verCfg: boolean;
+  public verMaestros: boolean;
 constructor(){
   this.identity=JSON.parse(localStorage.getItem('identity'));
+  this.verCfg=false;
+  this.verMaestros=false;
 }
   ngOnInit() {
-    this.rutasucursal='/gasto/list/'+this.identity.Empresa;
+    this.perfil=this.identity.PerfilWeb;
+    console.log(this.perfil);
+    if (this.perfil=='ADMIN'){
+      this.verCfg=true;
+      this.verMaestros=true;
+    } else  if (this.perfil=='LIDER'){
+      this.verCfg=false;
+      this.verMaestros=true;    
+    } else  if (this.perfil=='PROV'){
+      this.verCfg=false;
+      this.verMaestros=false;
+    }
   }
 }

@@ -74,6 +74,7 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
   public backendUrladj: string;
   public adjunto:any;
   public adjuntolst:any;
+  public perfil:any;
 
 
 
@@ -104,6 +105,7 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
     this.mkresControl2=[];
     this.formatofecha = Cfg.formatoFecha;
     this.empresamk=this.identity.Empresa;
+    this.perfil = this.identity.PerfilWeb;
     this.mostrarCaja=false;
     this.detalleaddshow=false;
     }
@@ -311,13 +313,14 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
       this._httpClient.post<any>(this.backendUrl + '/adjunto/new', formData).subscribe(
         response => {
           Swal.fire(this.devempresa, response.Ref, "success");
+          this.getadjunto();
         },
         error => {
             Swal.fire(this.devempresa, error.error, 'error');          
         });
         this.mkfile.nativeElement.value = '';
-        this.closeFileUploadModal();
-        this.getadjunto();
+        //this.closeFileUploadModal();
+        //this.getadjunto();
         //this.ngOnInit();
     }
   
@@ -337,6 +340,8 @@ export class CompraEditComponent implements OnInit, AfterViewInit {
 
       if (this.frmCabecero.value.estatus !='PENDIENTE' ){
         Swal.fire(this.devempresa, 'El movimiento no se puede afectar con estatus: '+this.frmCabecero.value.estatus, 'error');
+      } else  if (this.perfil == 'PROV' ){
+        Swal.fire(this.devempresa, 'Esta acción no esta disponible para tu perfil', 'error');
       } else {
 
         this.loading=true;
